@@ -4,6 +4,8 @@ import { useParams } from 'next/navigation'
 // import { fetchProperty } from '@/utils/requests'
 import { fetchProperty } from '../../../utils/requests'
 import PropertyHeaderImage from '@/components/PropertyHeaderImage'
+import PropertyDetails from '@/components/PropertyDetails'
+import Spinner from '@/components/Spinner'
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa'
 
@@ -40,6 +42,7 @@ const PropertyPage = () => {
 
     return (
         <>
+            {loading && <Spinner loading={loading} />}
             {!loading && property && (
                 <>
                     <PropertyHeaderImage image={property.images[0]} />
@@ -56,8 +59,10 @@ const PropertyPage = () => {
 
                     <section className="bg-blue-50">
                         <div className="container m-auto py-10 px-6">
-                            <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
-                                <main>
+                            <div className="grid grid-cols-1 md:grid-cols-[70%_28%] w-full gap-6">
+                                {/* <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6"> */}
+                                <PropertyDetails property={property} />
+                                {/* <main>
                                     <div
                                         className="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
                                     >
@@ -187,7 +192,7 @@ const PropertyPage = () => {
                                     <div className="bg-white p-6 rounded-lg shadow-md mt-6">
                                         <div id="map"></div>
                                     </div>
-                                </main>
+                                </main> */}
 
                                 <aside className="space-y-4">
                                     <button
